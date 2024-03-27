@@ -90,6 +90,7 @@ func requestTracker(trackerUrl string, infoHashHex string, initSize int64) {
 
 func localFakeTrackerHandler(w http.ResponseWriter, r *http.Request) {
 	infoHash := r.URL.Query().Get("info_hash")
+	infoHash = hex.EncodeToString([]byte(infoHash))
 	fmt.Println("received request: ", infoHash)
 
 	filename := fmt.Sprintf("%s.peers", infoHash)
